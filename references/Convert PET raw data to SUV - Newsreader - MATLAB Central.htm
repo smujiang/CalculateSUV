@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0067)http://www.mathworks.nl/matlabcentral/newsreader/view_thread/321994 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=8">
+      	<script type="text/javascript" src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/jquery-latest.js"></script>
+      <!-- START OF GLOBAL NAV -->
+  <link rel="stylesheet" href="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/sitewide.css" type="text/css">
+  <link rel="stylesheet" href="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/mlc.css" type="text/css">
+  <!--[if lt IE 7]>
+  <link href="/matlabcentral/css/ie6down.css" type="text/css" rel="stylesheet">
+  <![endif]-->
+
+      
+      
+<meta name="keywords" content="file exchange, matlab answers, newsgroup access, link exchange, matlab blog, matlab central, simulink blog, matlab community, matlab and simulink community">
+<meta name="description" content="File exchange, MATLAB Answers, newsgroup access, Links, and Blogs for the MATLAB &amp; Simulink user community">
+<link rel="stylesheet" type="text/css" media="print" href="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/print.css">
+<title>Convert PET raw data to SUV - Newsreader - MATLAB Central</title>
+<link type="text/css" rel="stylesheet" href="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/newsreader.css" media="screen">
+
+<meta name="keywords" content="file exchange, newsgroup access, matlab central, matlab community, matlab and simulink community">
+<meta name="description" content="file exchange and newsgroup access for the MATLAB &amp; Simulink user community">
+
+<script src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/prototype.js" type="text/javascript"></script>
+<script src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/tags.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+.recentlyadded {background-color:#FFFFFF; padding-left:6px; padding-top:3px; padding-bottom:4px; font-weight:bold; font-size:9pt; border-top:1px solid #243462; border-bottom:1px solid #243462 }
+td.recentheader {background-color:#FFFFFF; font-size: 9pt; padding:3px 3px 3px 6px; font-weight: bold; }
+td.recenttext {padding:7px; font-size:9pt; }
+ul.recentlist {list-style-image: url(/matlabcentral/images/bullet.gif) ; font-size:90%; margin-top:8px}
+div.recentul ul{margin-left:0}
+div.recentul a:link{text-decoration:none; font-size:86%}
+div.recentul a:visited{text-decoration:none; font-size:86%}
+div.recentul a:hover{text-decoration:underline; font-size:86%}
+ul {margin-top:0px; margin-bottom:5px; margin-left:17px;}
+div.mainbody {padding-top:30px}
+#rcol {background-color:#FFFFFF; font-size:9pt; }
+.section {cursor:pointer}
+div.sectioncontent {padding:10px; background-color:whitesmoke; border:1px solid #405B94; border-top:none; height:110px; overflow-y:auto}
+div.sectioncontentBottom {height:140px; padding:10px; background-color:whitesmoke; border:1px solid #405B94; border-top:none; overflow-y:auto}
+html>body div.sectioncontent, html>body div.sectioncontentBottom  {overflow:auto}
+#rcol td.pad  {padding:3px 5px 4px 11px; background-color:#F1F1F1; border-left:1px solid #D0D0D0; border-right:1px solid #D0D0D0}	
+#rcol h2 {margin-top:0}
+.sep {padding-bottom:8px}
+h1 {font-size:94%; margin-bottom:0}
+h2 {color:#000066; font-size:90%}
+h3 {margin-top:10px; margin-bottom:0}
+.recentul a.small:link, .recentul a.small:visited {font-size:8pt; text-decoration:none}
+-->
+</style>
+<script type="text/javascript">
+
+var horizontal_offset="-150px" //horizontal offset of hint box from anchor link
+var login_state="1"
+/////No further editting needed
+
+var vertical_offset="20px" //horizontal offset of hint box from anchor link. No need to change.
+var ie=document.all
+var ns6=document.getElementById&&!document.all
+
+function getposOffset(what, offsettype){
+var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+var parentEl=what.offsetParent;
+while (parentEl!=null){
+totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+parentEl=parentEl.offsetParent;
+}
+return totaloffset;
+}
+
+function iecompattest(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
+if (whichedge=="rightedge"){
+var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
+dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
+}
+else{
+var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
+}
+return edgeoffset
+}
+
+function showhint(menucontents, obj, e, tipwidth) {
+  if ((ie||ns6) && document.getElementById("hintbox")) {
+    dropmenuobj=document.getElementById("hintbox")
+    dropmenuobj.innerHTML=menucontents
+    dropmenuobj.style.left=dropmenuobj.style.top=-500
+    if (tipwidth != "") {
+      dropmenuobj.widthobj=dropmenuobj.style
+      dropmenuobj.widthobj.width=tipwidth
+    }
+    dropmenuobj.x=getposOffset(obj, "left")
+    dropmenuobj.y=getposOffset(obj, "top")
+    dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
+
+    offset_top  = obj.offsetHeight + dropmenuobj.y;
+    if (document.documentElement["clientHeight"]) {
+      if ((offset_top + dropmenuobj.offsetHeight) > document.documentElement["clientHeight"]) {
+        offset_top = offset_top - 18 - dropmenuobj.offsetHeight;
+      }
+    }
+    dropmenuobj.style.top = offset_top + "px";
+    dropmenuobj.style.visibility="visible"
+    obj.onmouseout=hidetip
+  }
+}
+
+function hidetip(e){
+dropmenuobj.style.visibility="hidden"
+dropmenuobj.style.left="-500px"
+}
+
+function createhintbox(){
+var divblock=document.createElement("div")
+divblock.setAttribute("id", "hintbox")
+document.body.appendChild(divblock)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", createhintbox, false)
+else if (window.attachEvent)
+window.attachEvent("onload", createhintbox)
+else if (document.getElementById)
+window.onload=createhintbox
+
+</script>
+<script language="javascript">
+<!--
+function PopUp(page)
+{
+OpenWin = this.open(page, "page_mail", "toolbar=no,menubar=no,location=no,scrollbars=yes,resize=no,height=385,width=420");
+}
+//-->
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script language="javascript">
+<!--
+function PopUp(page)
+{
+OpenWin = this.open(page, "page_mail", "toolbar=no,menubar=no,location=no,scrollbars=yes,resize=no,height=385,width=420");
+}
+//-->
+</script>
+
+<script language="JavaScript">
+<!--
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+
+
+  </head>
+    <body>
+      <div id="header">
+  <div class="wrapper">
+  <!--put nothing in left div - only 11px wide shadow --> 
+    <div class="main">
+        	<div id="logo"><a href="http://www.mathworks.nl/matlabcentral/" title="MATLAB Central Home"><img src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/mlclogo-whitebgd.gif" alt="MATLAB Central"></a></div>
+      
+        <div id="headertools">
+        
+
+<script language="JavaScript1.3" type="text/javascript">
+
+function submitForm(query){
+
+	choice = document.forms['searchForm'].elements['search_submit'].value;
+	
+	if (choice == "entire1" || choice == "contest" || choice == "matlabcentral" || choice == "blogs"){
+	
+	   var newElem = document.createElement("input");
+	   newElem.type = "hidden";
+	   newElem.name = "q";
+	   newElem.value = query.value;
+	   document.forms['searchForm'].appendChild(newElem);
+	      
+	   submit_action = '/searchresults/';
+	}
+	
+	switch(choice){
+	   case "matlabcentral":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "c[]";
+	      newElem.value = "matlabcentral";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      selected_index = 0;
+	      break
+	   case "fileexchange":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "term";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      submit_action = "/matlabcentral/fileexchange/";
+	      selected_index = 1;
+	      break
+	   case "answers":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "term";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      submit_action = "/matlabcentral/answers/";
+	      selected_index = 2;
+	      break
+	   case "cssm":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "search_string";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+		  submit_action = "/matlabcentral/newsreader/search_results";
+	      selected_index = 3;
+	      break
+	   case "linkexchange":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "term";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      submit_action = "/matlabcentral/linkexchange/";
+	      selected_index = 4;
+	      break
+	   case "blogs":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "c[]";
+	      newElem.value = "blogs";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      selected_index = 5;
+	      break
+	   case "trendy":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "search";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      submit_action = "/matlabcentral/trendy";
+	      selected_index = 6;
+	      break
+	   case "cody":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "term";
+	      newElem.value = query.value;
+	      newElem.classname = "formelem";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      submit_action = "/matlabcentral/cody/";
+	      selected_index = 7;
+	      break
+	   case "contest":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "c[]";
+	      newElem.value = "contest";
+	      document.forms['searchForm'].appendChild(newElem);
+	
+	      selected_index = 8;
+	      break
+	   case "entire1":
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "c[]";
+	      newElem.value = "entiresite";
+	      document.forms['searchForm'].appendChild(newElem);
+	      
+	      selected_index = 9;
+	      break
+	   default:
+	      var newElem = document.createElement("input");
+	      newElem.type = "hidden";
+	      newElem.name = "c[]";
+	      newElem.value = "entiresite";
+	      document.forms['searchForm'].appendChild(newElem);
+	   
+	      selected_index = 9;
+	      break
+	}
+
+	document.forms['searchForm'].elements['search_submit'].selectedIndex = selected_index;
+	document.forms['searchForm'].elements['query'].value = query.value;
+	document.forms['searchForm'].action = submit_action;
+}
+
+</script>
+
+
+  <form name="searchForm" method="GET" action="" style="margin:0px; margin-top:5px; font-size:90%" onsubmit="submitForm(query)">
+          <label for="search">Search: </label>
+        <select name="search_submit" style="font-size:9px ">
+          	<option value="matlabcentral" selected="">MATLAB Central</option>
+          	<option value="fileexchange">&nbsp;&nbsp;&nbsp;File Exchange</option>
+          	<option value="answers">&nbsp;&nbsp;&nbsp;Answers</option>
+             <option value="cssm" selected="">&nbsp;&nbsp;&nbsp;Newsgroup</option>
+          	<option value="linkexchange">&nbsp;&nbsp;&nbsp;Link Exchange</option>
+          	<option value="blogs">&nbsp;&nbsp;&nbsp;Blogs</option>
+          	<option value="trendy">&nbsp;&nbsp;&nbsp;Trendy</option>
+          	<option value="cody">&nbsp;&nbsp;&nbsp;Cody</option>
+          	<option value="contest">&nbsp;&nbsp;&nbsp;Contest</option>
+          <option value="entire1">MathWorks.com</option>
+        </select>
+<input type="text" name="query" size="10" class="formelem" value="">
+<input type="submit" value="Go" class="formelem gobutton">
+</form>
+
+
+        <ol id="access2">
+            
+            
+              <a href="https://www.mathworks.com/accesslogin/index_fe.do?uri=http://www.mathworks.nl/matlabcentral/newsreader/view_thread/321994">Log In</a> 
+              <li class="first"><a href="https://www.mathworks.com/accesslogin/createProfile.do?uri=http://www.mathworks.nl/matlabcentral/newsreader/view_thread/321994">Create Account</a></li>
+              <li><a href="https://www.mathworks.com/accesslogin/index_fe.do?uri=http://www.mathworks.nl/matlabcentral/newsreader/view_thread/321994">Log In</a></li>
+            
+        </ol>
+      </div>
+	  
+        <div id="globalnav">
+        <!-- from includes/global_nav.html -->
+        <ol>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/fileexchange/">File Exchange</a> 
+                </li>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/answers/">Answers</a> 
+                </li>
+                <li class="active">
+                        <a href="http://www.mathworks.nl/matlabcentral/newsreader/">Newsgroup</a> 
+                </li>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/linkexchange/">Link Exchange</a> 
+                </li>
+                <li class=";">
+                        <a href="http://blogs.mathworks.com/">Blogs</a> 
+                </li>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/trendy">Trendy</a> 
+                </li>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/cody">Cody</a> 
+                </li>
+                <li class=";">
+                        <a href="http://www.mathworks.nl/matlabcentral/contest/">Contest</a> 
+                </li>
+                <li class="icon mathworks">
+                        <a href="http://www.mathworks.nl/">MathWorks.com</a> 
+                </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="middle">
+  <div class="wrapper">
+      <div id="colleft">
+    <ul id="localnav">
+      
+      
+      <li><a href="http://www.mathworks.nl/matlabcentral/newsreader/about" class="hintanchor" onclick="window.open(this.href,&#39;new_window&#39;,&#39;width=536,height=500,scrollbars=yes&#39;);return false;">About the MATLAB Newsgroup</a></li>
+      <li class="maincta"><a href="http://www.mathworks.nl/matlabcentral/newsreader/create_message" class="post" rel="nofollow">Post A New Message</a></li>
+  	  	  	 
+	  <li class="cta"><a class="email" href="mailto:?body=I%20thought%20you%20might%20find%20this%20interesting%3A%0Ahttp%3A%2F%2Fwww.mathworks.nl%2Fmatlabcentral%2Fnewsreader%2Fview_thread%2F321994&subject=An%20interesting%20item%20from%20MathWorks" popup="[&quot;new_window&quot;, &quot;width=536,height=500,scrollbars=yes&quot;]">E-mail this page</a>	 
+	 </li>    
+      
+    </ul>
+  </div>
+
+  
+  
+<div id="mainbody" class="columns2">
+<table id="breadcrumbs" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td class="brdcrmbcell">
+      <a href="http://www.mathworks.nl/matlabcentral/">MATLAB Central</a> <span class="separator">&gt;</span> 
+      <a href="http://www.mathworks.nl/matlabcentral/newsreader/">MATLAB Newsreader</a>
+       &gt; Convert PET raw data to SUV
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td width="600">
+      <!--SEARCHBOX-->
+    </td>
+    <!--MENUBUTTONS-->
+    <td align="right" valign="bottom">
+      <table height="auto" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td align="left" valign="bottom" style="padding-bottom:3px">
+            <div id="menu">
+              <div class="mainlinks" style="width:100%; text-align:left;">
+                
+                  <a href="http://www.mathworks.nl/matlabcentral/newsreader/create_thread_watchlist/321994" class="add" rel="nofollow">Add thread to My Watch List</a>
+                
+                <a href="http://www.mathworks.nl/matlabcentral/newsreader/what_is_a_watchlist" class="hintanchor" onclick="window.open(this.href,&#39;new_window&#39;,&#39;width=536,height=500,scrollbars=yes&#39;);return false;" rel="nofollow">What is a Watch List?</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+<div id="contentcontainer">
+<h1>Thread Subject: Convert PET raw data to SUV</h1>
+
+
+  <a name="883530"></a>
+  <table border="0" cellspacing="0" cellpadding="6" width="100%" class="threadlist">
+    <tbody><tr class="messageheader">
+      <td>
+        <div class="messageheader">
+          <p style="wrap:auto"><strong>Subject:</strong> Convert PET raw data to SUV</p>
+          <p><b>From:</b> <a href="http://www.mathworks.nl/matlabcentral/newsreader/author/149674">Siti_Mustaqim</a></p>
+          <p><b>Date:</b> 22 Jul, 2012 03:06:40</p>
+          <p><strong>Message:</strong> 1 of 3 </p>
+        </div>
+        <div class="submenu"> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/create_message?reply_id=883530" rel="nofollow">Reply to this message</a></div> 
+          <div class="submenuitem">
+            
+              <a href="http://www.mathworks.nl/matlabcentral/newsreader/create_author_watchlist/149674?thread=321994" class="add" rel="nofollow">Add author to My Watch List</a>
+            
+          </div> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/view_original/883530" onclick="window.open(this.href,&#39;new_window&#39;,&#39;width=760,height=600&#39;);return false;" rel="nofollow">View original format</a></div>
+          <div class="submenuitem">
+        	
+            <a href="http://www.mathworks.nl/matlabcentral/newsreader/flagged_as_spam/883530" rel="nofollow">Flag as spam</a>
+        	
+          </div> 
+        </div>
+      </td>
+    </tr>
+    <tr class="messagebody">
+      <td>
+        <p style="overflow-x: auto;width: 522px">
+          Hi,<br>
+Does anyone know how can I convert raw PET data (0 to 32767) unit BQML from Siemes PET/CT to Standardized Uptake Value? What is the supposed SUV range in the image?<br>
+I followed this:<br>
+<br>
+actualActivity=tracerAct*(exp(-ellapsedTime*log(2)/halfLife));<br>
+atualActivity=actualActivity*metadata.DecayFactor;<br>
+suvFactor=WEIGHT*1000/actualActivity;<br>
+SUV=PETraw*suvFactor;<br>
+<br>
+And my SUV image is within [0,10.7633]. Is this correct?<br>
+<br>
+Thanks for any response. I really appreaciate it.
+        </p>
+      </td>
+    </tr>
+  </tbody></table>
+  
+
+  <a name="883586"></a>
+  <table border="0" cellspacing="0" cellpadding="6" width="100%" class="threadlist">
+    <tbody><tr class="messageheader">
+      <td>
+        <div class="messageheader">
+          <p style="wrap:auto"><strong>Subject:</strong> Convert PET raw data to SUV</p>
+          <p><b>From:</b> <a href="http://www.mathworks.nl/matlabcentral/newsreader/author/149469">Luca </a></p>
+          <p><b>Date:</b> 23 Jul, 2012 11:02:13</p>
+          <p><strong>Message:</strong> 2 of 3 </p>
+        </div>
+        <div class="submenu"> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/create_message?reply_id=883586" rel="nofollow">Reply to this message</a></div> 
+          <div class="submenuitem">
+            
+              <a href="http://www.mathworks.nl/matlabcentral/newsreader/create_author_watchlist/149469?thread=321994" class="add" rel="nofollow">Add author to My Watch List</a>
+            
+          </div> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/view_original/883586" onclick="window.open(this.href,&#39;new_window&#39;,&#39;width=760,height=600&#39;);return false;" rel="nofollow">View original format</a></div>
+          <div class="submenuitem">
+        	
+            <a href="http://www.mathworks.nl/matlabcentral/newsreader/flagged_as_spam/883586" rel="nofollow">Flag as spam</a>
+        	
+          </div> 
+        </div>
+      </td>
+    </tr>
+    <tr class="messagebody">
+      <td>
+        <p style="overflow-x: auto;width: 522px">
+          Siti_Mustaqim &lt;ctsalasiah1950@gmail.com&gt; wrote in message &lt;f8b06982-a10c-41d8-b6da-df8fac5ca27e@googlegroups.com&gt;...<br>
+&gt; Hi,<br>
+&gt; Does anyone know how can I convert raw PET data (0 to 32767) unit BQML from Siemes PET/CT to Standardized Uptake Value? What is the supposed SUV range in the image?<br>
+&gt; I followed this:<br>
+<br>
+<br>
+What an odd question... Are you confident enough with the topic??<br>
+1) Images written in dicom format are usually scaled (each slice independently) between 0 and 32767. This has nothing to do with PET raw data. It's dicom!<br>
+Using the coefficient provided in the dicom header you can scale the sliced to activity values. In the units specified in another header field. (kBq/cc, MBq/cc, uCi/cc etc...)<br>
+<br>
+2) Once you have activity values you can apply one of the various definitions of SUV.<br>
+<br>
+<br>
+&gt; actualActivity=tracerAct*(exp(-ellapsedTime*log(2)/halfLife));<br>
+&gt; atualActivity=actualActivity*metadata.DecayFactor;<br>
+&gt; suvFactor=WEIGHT*1000/actualActivity;<br>
+&gt; SUV=PETraw*suvFactor;<br>
+<br>
+You don't specify what are those variables. If I interpret correctly what you're doing it seems at least extremely odd to compute the decays of the injected activity (first line) and then multiply it again by a "DecayFactor".<br>
+Looks like your correcting twice for the activity decay. To which istant does your scanner decay-corrects the activity values? At which time is your dose calibrated? When was the patient injected?<br>
+When you know all this... Perform the proper decay corrections!<br>
+Then suvFactor defined as WEIGHT*1000/actualActivity may be correct. But it's just one of the possible definitions.<br>
+<br>
+&gt; And my SUV image is within [0,10.7633]. Is this correct?<br>
+<br>
+It's sensible. The mean value across the whole the body should be a bit less than 1. With high uptake organ/lesion taking high values (i.e.: I've seen peak values up to 15 for some very high activity lesions)<br>
+<br>
+&gt; Thanks for any response. I really appreaciate it.<br>
+<br>
+Then again... Read this paper:<br>
+"John W. Keyes, Jr.<br>
+SUV: Standard Uptake or Silly Useless Value? <br>
+J Nucl Med 1995 36:1836-1839"<br>
+<br>
+SUV is meaningless and confounding, whatever the physicians might think of it!!! EVEN IF one could correct for all the errors introduced by the scanner and the reconstruction.
+        </p>
+      </td>
+    </tr>
+  </tbody></table>
+  
+
+  <a name="883625"></a>
+  <table border="0" cellspacing="0" cellpadding="6" width="100%" class="threadlist">
+    <tbody><tr class="messageheader">
+      <td>
+        <div class="messageheader">
+          <p style="wrap:auto"><strong>Subject:</strong> Convert PET raw data to SUV</p>
+          <p><b>From:</b> <a href="http://www.mathworks.nl/matlabcentral/newsreader/author/149674">Siti_Mustaqim</a></p>
+          <p><b>Date:</b> 23 Jul, 2012 18:05:29</p>
+          <p><strong>Message:</strong> 3 of 3 </p>
+        </div>
+        <div class="submenu"> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/create_message?reply_id=883625" rel="nofollow">Reply to this message</a></div> 
+          <div class="submenuitem">
+            
+              <a href="http://www.mathworks.nl/matlabcentral/newsreader/create_author_watchlist/149674?thread=321994" class="add" rel="nofollow">Add author to My Watch List</a>
+            
+          </div> 
+          <div class="submenuitem"><a href="http://www.mathworks.nl/matlabcentral/newsreader/view_original/883625" onclick="window.open(this.href,&#39;new_window&#39;,&#39;width=760,height=600&#39;);return false;" rel="nofollow">View original format</a></div>
+          <div class="submenuitem">
+        	
+            <a href="http://www.mathworks.nl/matlabcentral/newsreader/flagged_as_spam/883625" rel="nofollow">Flag as spam</a>
+        	
+          </div> 
+        </div>
+      </td>
+    </tr>
+    <tr class="messagebody">
+      <td>
+        <p style="overflow-x: auto;width: 522px">
+          Thank you for your explanation;<br>
+<br>
+I did rescale the PET data into activity values using:<br>
+<br>
+PETActivities=RescaleSlope.PETintensity+RescaleIntercept <br>
+<br>
+The PETintensity is within (0,32767). I will read again about SUV values as suggested. <br>
+<br>
+Thanks again.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+On Monday, 23 July 2012 19:02:13 UTC+8, Luca   wrote:<br>
+&gt; ; wrote in message &lt;f8b06982-a10c-41d8-b6da-df8fac5ca27e@googlegroups.com&gt;...<br>
+&gt; &gt; Hi,<br>
+&gt; &gt; Does anyone know how can I convert raw PET data (0 to 32767) unit BQML from Siemes PET/CT to Standardized Uptake Value? What is the supposed SUV range in the image?<br>
+&gt; &gt; I followed this:<br>
+&gt; <br>
+&gt; <br>
+&gt; What an odd question... Are you confident enough with the topic??<br>
+&gt; 1) Images written in dicom format are usually scaled (each slice independently) between 0 and 32767. This has nothing to do with PET raw data. It's dicom!<br>
+&gt; Using the coefficient provided in the dicom header you can scale the sliced to activity values. In the units specified in another header field. (kBq/cc, MBq/cc, uCi/cc etc...)<br>
+&gt; <br>
+&gt; 2) Once you have activity values you can apply one of the various definitions of SUV.<br>
+&gt; <br>
+&gt; <br>
+&gt; &gt; actualActivity=tracerAct*(exp(-ellapsedTime*log(2)/halfLife));<br>
+&gt; &gt; atualActivity=actualActivity*metadata.DecayFactor;<br>
+&gt; &gt; suvFactor=WEIGHT*1000/actualActivity;<br>
+&gt; &gt; SUV=PETraw*suvFactor;<br>
+&gt; <br>
+&gt; You don't specify what are those variables. If I interpret correctly what you're doing it seems at least extremely odd to compute the decays of the injected activity (first line) and then multiply it again by a "DecayFactor".<br>
+&gt; Looks like your correcting twice for the activity decay. To which istant does your scanner decay-corrects the activity values? At which time is your dose calibrated? When was the patient injected?<br>
+&gt; When you know all this... Perform the proper decay corrections!<br>
+&gt; Then suvFactor defined as WEIGHT*1000/actualActivity may be correct. But it's just one of the possible definitions.<br>
+&gt; <br>
+&gt; &gt; And my SUV image is within [0,10.7633]. Is this correct?<br>
+&gt; <br>
+&gt; It's sensible. The mean value across the whole the body should be a bit less than 1. With high uptake organ/lesion taking high values (i.e.: I've seen peak values up to 15 for some very high activity lesions)<br>
+&gt; <br>
+&gt; &gt; Thanks for any response. I really appreaciate it.<br>
+&gt; <br>
+&gt; Then again... Read this paper:<br>
+&gt; "John W. Keyes, Jr.<br>
+&gt; SUV: Standard Uptake or Silly Useless Value? <br>
+&gt; J Nucl Med 1995 36:1836-1839"<br>
+&gt; <br>
+&gt; SUV is meaningless and confounding, whatever the physicians might think of it!!! EVEN IF one could correct for all the errors introduced by the scanner and the reconstruction.
+        </p>
+      </td>
+    </tr>
+  </tbody></table>
+  
+
+</div>
+
+<div id="tagbox">
+  <h2 style=" color:#000000; font-size:14px; ">Tags for this Thread</h2>
+
+
+
+
+
+<h3>Add a New Tag:</h3>
+<form action="http://www.mathworks.nl/matlabcentral/newsreader/tag_thread" method="post">
+  <input class="formelem" id="addtext" name="text" type="text">
+  <input class="small" id="addbutton" name="commit" type="submit" value="Add">
+  <input id="thread_id" name="thread_id" type="hidden" value="321994">
+</form>
+<span class="note">Separated by commas<br>
+Ex.: root locus, bode</span>
+
+<h3>What are tags?</h3>
+<p>A tag is like a keyword or category label associated with each thread. Tags make it easier for you to find threads of interest.</p>
+<p>Anyone can tag a thread. Tags are public and visible to everyone.</p>
+
+
+
+</div>
+
+<div id="tagactivity">
+  
+</div>
+
+
+<a href="http://www.mathworks.nl/matlabcentral/newsreader/thread_feed/321994"><img src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/rss.gif" alt="rss" style="margin: 10px 7px 0px 0px;" border="0" height="16" width="16"></a><a href="http://www.mathworks.nl/matlabcentral/newsreader/thread_feed/321994">Feed for this Thread</a>
+<link href="http://www.mathworks.nl/matlabcentral/newsreader/thread_feed/321994" rel="alternate" title="RSS" type="application/rss+xml">
+
+
+
+
+<p id="contactus">Contact us at <a href="mailto:files@mathworks.com">files@mathworks.com</a></p>
+
+      
+</div>
+<div class="clearboth">&nbsp;</div>
+</div>
+</div>
+<!-- footer.html -->
+<!-- START OF FOOTER -->
+
+<div id="mlc-footer">
+  <script type="text/javascript">
+function clickDynamic(obj, target_url, tracking_code) {
+	var pos=target_url.indexOf("?");
+	if (pos<=0) { 
+		var linkComponents = target_url + tracking_code;
+		obj.href=linkComponents;
+	} 
+}
+</script>
+  <div class="wrapper">
+    <div>
+      <ul id="matlabcentral">
+        <li class="copyright first">© 1994-2013 The MathWorks, Inc.</li>
+        <li class="first"><a href="http://www.mathworks.nl/help.html" title="Site Help">Site Help</a></li>
+        <li><a href="http://www.mathworks.nl/company/aboutus/policies_statements/patents.html" title="patents" rel="nofollow">Patents</a></li>
+        <li><a href="http://www.mathworks.nl/company/aboutus/policies_statements/trademarks.html" title="trademarks" rel="nofollow">Trademarks</a></li>
+        <li><a href="http://www.mathworks.nl/company/aboutus/policies_statements/" title="privacy policy" rel="nofollow">Privacy Policy</a></li>
+        <li><a href="http://www.mathworks.nl/company/aboutus/policies_statements/piracy.html" title="preventing piracy" rel="nofollow">Preventing Piracy</a></li>
+        <li class="last"><a href="http://www.mathworks.nl/matlabcentral/termsofuse.html" title="Terms of Use" rel="nofollow">Terms of Use</a></li>
+        <li class="icon"><a href="http://www.mathworks.nl/company/rss/" title="RSS" class="rssfeed" rel="nofollow"><span class="text">RSS</span></a></li>
+        <li class="icon"><a href="http://www-external-test.mathworks.com/programs/bounce_hub_generic.html?s_cid=mlc_fbk&url=https://plus.google.com/117177960465154322866?prsrc=3" title="Google+" class="google" rel="nofollow"><span class="text">Google+</span></a></li>
+        <li class="icon"><a href="http://www.mathworks.com/programs/bounce_hub_generic.html?s_cid=mlc_fbk&url=http://www.facebook.com/MATLAB" title="Facebook" class="facebook" rel="nofollow"><span class="text">Facebook</span></a></li>
+        <li class="last icon"><a href="http://www.mathworks.com/programs/bounce_hub_generic.html?s_cid=mlc_twt&url=http://www.twitter.com/MATLAB" title="Twitter" class="twitter" rel="nofollow"><span class="text">Twitter</span></a></li>
+      </ul>
+      <ul id="mathworks">
+        <li class="first sectionhead">Featured MathWorks.com Topics:</li>
+        <li class="first"><a href="http://www.mathworks.nl/products/new_products/latest_features.html" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_new&#39;)">New Products</a></li>
+        <li><a href="http://www.mathworks.nl/support/" title="support" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_support&#39;)">Support</a></li>
+        <li><a href="http://www.mathworks.nl/help" title="documentation" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_doc&#39;)">Documentation</a></li>
+        <li><a href="http://www.mathworks.nl/services/training/" title="training" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_training&#39;)">Training</a></li>
+        <li><a href="http://www.mathworks.nl/company/events/webinars/" title="Webinars" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_webinars&#39;)">Webinars</a></li>
+        <li><a href="http://www.mathworks.nl/company/newsletters/" title="newsletters" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_newsletters&#39;)">Newsletters</a></li>
+        <li><a href="http://www.mathworks.nl/programs/trials/trial_request.html?prodcode=ML&s_cid=MLC_trials" title="MATLAB Trials">MATLAB Trials</a></li>
+        
+                <li class="last"><a href="http://www.mathworks.nl/company/jobs/opportunities/index_en_US.html" title="Careers" onclick="clickDynamic(this, this.href, &#39;?s_cid=MLC_careers&#39;)">Careers</a></li>
+                 
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- END OF FOOTER -->
+
+
+      
+      
+<!-- SiteCatalyst code version: H.24.4.
+Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="./Convert PET raw data to SUV - Newsreader - MATLAB Central_files/s_code.js"></script>
+
+
+<script language="JavaScript" type="text/javascript">
+
+
+
+<!--
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script>
+<!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.24.4. -->    
+
+<div id="hintbox"></div></body></html>

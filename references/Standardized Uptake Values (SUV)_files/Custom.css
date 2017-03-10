@@ -1,0 +1,36 @@
+/* Custom CSS */
+
+/*.pSummary_Bulletted {text-indent: -.6em;}
+.p1st_Numbers {text-indent: -.6em;}
+.p1st_Number1 {text-indent: -.6em;}
+*/
+
+/*.pNote__1st_Cell {text-indent: -2.9em;}*/
+.pHeading4 {font-variant: normal;}
+.pHeading4Break {font-variant: normal;}
+.pHeading1 {clear: right;}
+.pHeading2 {clear: right;}
+.pHeading3 {clear: right;}
+.pHeading4 {clear: none;}
+.ppsuedoHeading4 {font-variant: normal;}
+body {width: 850px;}
+.t2_col_1_row {clear: right;}
+.tWarningTable {clear: right;}
+
+body {onload: "beginSearch();"}
+#maincontent {width: 800px;}
+
+.p1st_Bulleted{margin-left: 34px; text-indent: -10px;}
+
+.p2nd_Bulleted{margin-left: 68px; text-indent: -10px;}
+
+.p3rd_Bulleted{margin-left: 102px; text-indent: -10px;}
+
+/*.p1st_Number1 {margin-left: 34px; text-indent: -10px;}*/
+.p1st_Number1 {margin-left: 41px; text-indent: -17px;}
+.p1st_Numbers {margin-left: 41px; text-indent: -17px;}
+.pWarningBulleted{margin-left: 34px; text-indent: -10px;}
+
+.pNote__1st_Cell {margin-left: 38px; text-indent: -38px;}
+.pNote___1st_cell_no_spaces {margin-left: 38px; text-indent: -38px}
+.pNote_ {margin-left: 38px; text-indent: -38px;}

@@ -1,0 +1,13 @@
+body {background:none!important;}
+h1 {
+	font-family:Arial, Helvetica, sans-serif!important;
+}
+
+#localnav {display:none!important;}
+
+table#mainbody {
+background:none!important;
+border:none!important;
+}
+
+#globalnav {border-bottom:2px solid #616161;}
